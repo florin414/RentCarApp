@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RentCarApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RentCarApplication.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Shared/RentCar">RentCar</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial"/>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>About Us</h3>
+                    <p>Description of the company</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fab fa-facebook-f fa-2x"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Site Developed by</h3>
+                    <p>Magadan Florin, Niti Elena Alexandra, and Andreea Popescu</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<style>
+    footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+footer h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+footer p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.social-icons li:last-child {
+  margin-right: 0;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 20px;
+}
+
+/*.social-icons a:hover {
+  color: #00f;
+}
+*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center;
+}
+
+.col-md-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+    .col-md-4 {
+        text-align: center;
+    }
+
+        .col-md-4 h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .col-md-4 ul.social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .col-md-4 ul.social-icons li {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+                .col-md-4 ul.social-icons li:last-child {
+                    margin-right: 0;
+                }
+
+                .col-md-4 ul.social-icons li a {
+                    display: inline-block;
+                    font-size: 24px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    width: 40px;
+                }
+
+                    .col-md-4 ul.social-icons li a:hover {
+                        color: #fff;
+                    }
+
+</style>
+
+
+<style>
+    nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Stil pentru link-uri */
+.navbar-nav li a {
+  color: #333;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Animatie pentru hover */
+.navbar-nav li a:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.navbar-nav li a:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+/* Stil pentru butonul toggle */
+.navbar-toggler {
+  border: none;
+  background: transparent !important;
+}
+
+/* Stil pentru iconita de toggle */
+.navbar-toggler-icon {
+  background-image: url("https://img.icons8.com/material-rounded/24/000000/menu--v2.png");
+  width: 24px;
+  height: 24px;
+}
+
+/* Stil pentru iconita de toggle la hover */
+.navbar-toggler:hover .navbar-toggler-icon {
+  transform: rotate(90deg);
+}
+</style>

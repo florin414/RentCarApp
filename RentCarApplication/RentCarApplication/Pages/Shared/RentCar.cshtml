@@ -1,0 +1,93 @@
+﻿@page "/Shared/RentCar"
+@model RentCarApplication.Pages.Shared.RentCarModel
+@{
+    ViewData["Title"] = "Rental Car";
+}
+
+
+
+@foreach (var car in Model.Cars)
+{
+    string carId = $"/car{car.Id}.jpg";
+    <div class="vehicle-card">
+        <img src=@carId alt="Image" style="width: 270px; height: 150px;">
+        <div class="vehicle-details">
+            <h3>@car.Brand</h3>
+            <p>@car.Type</p>
+            <div class="vehicle-price">
+                <span>Price per hour</span>
+                <h4>$ @car.Price</h4>
+            </div>
+            <a asp-page="/Shared/CarDetail" asp-route-id="@car.Id">View Details</a>
+        </div>
+    </div> 
+}
+
+<style>
+    .vehicle-card {
+        width: 23%;
+        margin: 10px 10px 70px 10px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+        .vehicle-card:last-child {
+            margin-right: 0;
+        }
+
+        .vehicle-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+    .vehicle-details {
+        padding: 10px;
+        background-color: #f1f1f1;
+    }
+
+        .vehicle-details h3 {
+            margin-top: 0;
+        }
+
+        .vehicle-details p {
+            margin: 10px 0;
+        }
+
+        .vehicle-details ul {
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        .vehicle-details li {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+    .vehicle-price {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        .vehicle-price span {
+            display: block;
+            font-size: 14px;
+        }
+
+        .vehicle-price h4 {
+            margin-top: 5px;
+            font-size: 24px;
+        }
+
+    button {
+        display: block;
+        margin: 10px auto 0;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>

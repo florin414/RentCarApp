@@ -1,0 +1,27 @@
+﻿@page "/Shared/CarDetail"
+@model RentCarApplication.Pages.Shared.CarDetailModel
+@{
+    var car = Model.Car;
+    string carId = $"/car{car.Id}.jpg";
+}
+
+<div class="vehicle-card">
+    <img src=@carId alt="Image" style="width: 270px; height: 150px;">
+    <div class="vehicle-details">
+        <h3>@car.Brand</h3>
+        <p>@car.Type</p>
+        <div class="vehicle-price">
+            <span>Price per hour</span>
+            <h4>$ @car.Price</h4>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    <label asp-for="Rent.Location">Location:</label>
+    <input type="text" asp-for="Rent.Location">
+    <label asp-for="Rent.DateTime">PickupDate:</label>
+    <input type="date" asp-for="Rent.DateTime">
+    <button asp-page-handler="Cancel" class="py-3 px-5 border  btn btn-danger">Cancel</button>
+    <button asp-route-id="@car.Id" asp-page-handler="CreateRent" class="py-3 px-5 me-2 border btn btn-primar">Rent</button>
+</form>
