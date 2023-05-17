@@ -1,6 +1,6 @@
 ﻿namespace RentCarApplication.BusinessLogic.RequestHandlers;
 
-public class CreateCarHandler : IRequestHandler<CreateCarRequest>
+public class CreateCarHandler : IRequestHandler<CreateCarRequest, Car>
 {
     public readonly IUnitOfWork _unitOfWork;
 
@@ -9,10 +9,14 @@ public class CreateCarHandler : IRequestHandler<CreateCarRequest>
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
     }
 
-    public async Task<Unit> Handle(CreateCarRequest request, CancellationToken cancellationToken)
+    public async Task<Car> Handle(CreateCarRequest request, CancellationToken cancellationToken)
     {
+        if(request.Car == null)
+            throw new ArgumentNullException(nameof(request.Car));
+
         await _unitOfWork.CarRepository.AddAsync(request.Car);
         _unitOfWork.Save();
-        return Unit.Value;
+
+        return request.Car;
     }
 }

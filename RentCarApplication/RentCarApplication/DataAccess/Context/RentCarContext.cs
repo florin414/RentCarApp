@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace RentCarApplication.DataAccess.Context;
-internal class RentCarContext : IdentityDbContext<User>
+public class RentCarContext : IdentityDbContext<User>
 {
     public DbSet<User>? Users { get; set; }
     public DbSet<Rent>? Rents { get; set; }

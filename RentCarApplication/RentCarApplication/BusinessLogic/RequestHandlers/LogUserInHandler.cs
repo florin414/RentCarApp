@@ -1,4 +1,6 @@
-﻿namespace RentCarApplication.BusinessLogic.RequestHandlers;
+﻿using RentCarApplication.Exceptions;
+
+namespace RentCarApplication.BusinessLogic.RequestHandlers;
 
 public class LogUserInHandler : IRequestHandler<LogUserInRequest>
 {
@@ -11,6 +13,11 @@ public class LogUserInHandler : IRequestHandler<LogUserInRequest>
 
     public async Task<Unit> Handle(LogUserInRequest request, CancellationToken cancellationToken)
     {
+        if(request.user == null)
+            throw new ArgumentNullException(nameof(request.user));
+        if (request.user.EmailConfirmed == false)
+            throw new EmailNotConfirmedException();
+
         await _signInManager.SignInAsync(request.user, isPersistent: false);
         return Unit.Value;
     }
